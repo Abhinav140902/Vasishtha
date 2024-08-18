@@ -13,6 +13,7 @@ body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
     color: #333;
+    overflow-x: hidden;
 }
 
 header {
@@ -28,6 +29,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 45px;
 }
 
 .nav-menu {
@@ -56,6 +58,8 @@ nav ul {
 
 .logo {
     max-height: 50px;
+    margin-top: -20px;
+    margin-bottom: 2px;
 }
 
 nav ul li a {
@@ -67,7 +71,7 @@ nav ul li a {
     transition: background 0.3s, color 0.3s, font-weight 0.3s; /* Add transition for color and font-weight */
 }
 
-nav ul li a::before {
+nav ul li a:not(.contact-button)::before {
     content: '';
     position: absolute;
     width: 0;
@@ -78,14 +82,14 @@ nav ul li a::before {
     transition: width 0.3s ease; /* Smooth transition for the line */
 }
 
-nav ul li a:hover {
+nav ul li a:not(.contact-button):hover {
     color: #EF8E00;
     font-weight: 500;
     border-radius: 5px;
     text-decoration: none;
 }
 
-nav ul li a:hover::before {
+nav ul li a:not(.contact-button):hover::before {
     width: 100%; /* Expand the line to the full width on hover */
 }
 
@@ -95,6 +99,13 @@ nav ul li a:hover::before {
     color: #fff;
     border-radius: 5px;
     padding: 10px 20px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.contact-button:hover {
+    background-color: #333;
+    color: #fff;
     text-decoration: none;
 }
 
@@ -111,17 +122,23 @@ nav ul li a:hover::before {
 
 .hero-content {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
     max-width: 1300px;
+    margin: 0 auto;
+    margin-top: 100px;
 }
 
 
 .main-head {
     margin-top: -100px;
     margin-bottom: 20px; /* Add some space below the main heading */
+}
+
+.main-head p {
+    font-size: 1.4rem;
+    font-style: italic;
+    padding-left: 4px;
 }
 
 .hero p {
@@ -193,11 +210,10 @@ nav ul li a:hover::before {
 }
 
 .hero-text {
+    max-width: 50%;
     text-align: left;
-    max-width: 400px;
-    margin: 0 auto;
-    margin-left: 0px;
 }
+
 .heading-image {
     max-width: 180%;
     height: auto;
@@ -252,8 +268,6 @@ nav ul li a:hover::before {
 
 .hero-tag {
     width: 100%;
-    /* max-width: 1200px; */
-    margin-top: 10px;
 }
 
 .hero-tag img {
@@ -292,7 +306,7 @@ nav ul li a:hover::before {
 footer {
     background-color: #EF8E00;
     color: #fff;
-    padding: 50px 20px;
+    /* padding: 50px 20px; */
     text-align: center;
 }
 
@@ -363,12 +377,6 @@ footer {
         margin-top: 20px;
     }
 
-    .hero-content {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-
     .hero-image img {
         width: 100%;
         height: auto;
@@ -376,7 +384,6 @@ footer {
     }
 
     .hero-text {
-        margin: 20px 0;
         max-width: 100%;
         text-align: center;
     }
@@ -426,48 +433,42 @@ footer {
     position: relative;
     text-align: center;
 }
-
-.carousel-control-prev {
-    left: -70px !important;
-}
-
-.carousel-control-next {
-    right: -70px !important;
-}
-
 .carousel-control-prev-icon,
 .carousel-control-next-icon {
-    background-color: black !important;
+    background-color: #333 !important; /* Darker background */
     border-radius: 50%;
-    color: black !important;
-    width: 30px !important;
-    height: 30px !important;
+    width: 40px !important; /* Slightly larger size */
+    height: 40px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transition */
 }
 
-.carousel-control-prev-icon {
-    background-image: none; /* Remove the default Bootstrap icon */
-}
-
+/* Left Arrow */
 .carousel-control-prev-icon:after {
     content: '\2039'; /* Unicode for left arrow */
-    font-size: 20px;
+    font-size: 24px; /* Larger arrow size */
     color: white;
     position: absolute;
     left: 8px;
-    top: 3px;
+    top: 6px; /* Adjusted position */
 }
 
-.carousel-control-next-icon {
-    background-image: none; /* Remove the default Bootstrap icon */
-}
-
+/* Right Arrow */
 .carousel-control-next-icon:after {
     content: '\203A'; /* Unicode for right arrow */
-    font-size: 20px;
-    color: black !important;
+    font-size: 24px; /* Larger arrow size */
+    color: white; /* Changed to white for consistency */
     position: absolute;
     left: 7px;
-    top: 3px;
+    top: 6px; /* Adjusted position */
+}
+
+/* Hover Effects */
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: #555 !important; /* Darker background on hover */
+    transform: scale(1.1); /* Slightly increase size on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Enhanced shadow on hover */
 }
 
 
@@ -739,11 +740,13 @@ footer {
     /* General Layout Adjustments */
     .logo{
         width: 150px;
+        margin-bottom: -15px;
     }
     header {
         flex-direction: column;
         align-items: flex-start;
         padding: 10px;
+        height: 60px;
     }
 
     nav ul {
@@ -767,7 +770,9 @@ footer {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        padding: 20px;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
     }
 
     .hero-image img {
@@ -783,8 +788,14 @@ footer {
 
     .hero-text {
         max-width: 100%;
-        margin: 20px 0;
-        text-align: center;
+        margin-top: -20px;
+        margin-left: 5px;
+    }
+
+    .hero-image {
+        order: -1; /* Move image to the top */
+        max-width: 100%;
+        margin-bottom: 20px;
     }
 
     .social-icons {
@@ -816,6 +827,10 @@ footer {
 
     .carousel-inner {
         padding-left: 0;
+    }
+
+    .carousel-control-next-icon {
+        margin-right: 0px !important;
     }
 
     .carousel-control-prev,
@@ -853,14 +868,15 @@ footer {
     }
 
     .img-fluid {
-        height: auto !important;
+        height: 210px !important;
         margin-top: 40px;
     }
 
     .mar-img {
         margin-bottom: 40px;
         width: 400px;
-        height: 80px;
+        height: 90px;
+        margin-left: -10px;
     }
 
     .custom-button, .subbtn {
@@ -879,57 +895,101 @@ footer {
 
     .footer-content {
         flex-direction: column;
-        text-align: center;
-        gap: 20px;
+        align-items: center;
     }
 
-    .footer-section, .contact-section {
+    .footer-section {
+        max-width: 100%;
         text-align: center;
         margin-bottom: 20px;
     }
 
     .footer-section h5 {
-        font-size: 1.2rem;
+        margin-bottom: 15px;
     }
 
-    .footer-content ul {
+    .footer-content .col-md-2:nth-child(1), 
+    .footer-content .col-md-2:nth-child(2) {
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .footer-content .col-md-2:nth-child(3) {
+        display: block;
+        width: 100%;
+        max-width: 300px;
         text-align: center;
+        margin-top: 20px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .footer-section ul {
         padding-left: 0;
     }
 
-    .footer-content ul li {
+    .footer-section ul li {
         margin-bottom: 10px;
     }
 
-    .footer-content ul li a {
-        padding: 10px 0;
-    }
-
-    .d-flex.flex-column.flex-sm-row.w-100.gap-2 {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    .footer-content .btn {
+    .footer-section ul li a {
+        padding: 10px;
+        display: inline-block;
         width: 100%;
         text-align: center;
     }
 
-    .footer-content p {
-        margin-bottom: 20px;
+    .contact-section {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .contact-section h5 {
+        margin-bottom: 15px;
+    }
+
+    .contact-section ul {
+        padding-left: 0;
+    }
+
+    .contact-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .contact-section ul li a {
+        padding: 10px;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+    }
+
+    .contact-section .d-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-section form {
+        width: 100%;
+    }
+
+    .contact-section form .btn {
+        width: 100%;
+        margin-top: 10px;
     }
 
     .d-flex.flex-column.flex-sm-row.justify-content-between.py-4.my-4.border-top {
         flex-direction: column;
-        gap: 10px;
+        align-items: center;
+        text-align: center;
     }
 
     .d-flex.flex-column.flex-sm-row.justify-content-between.py-4.my-4.border-top p {
-        text-align: center;
+        margin-bottom: 20px;
     }
 
     .d-flex.flex-column.flex-sm-row.justify-content-between.py-4.my-4.border-top ul {
         justify-content: center;
+        margin-top: 10px;
     }
 }
 
@@ -964,20 +1024,23 @@ footer {
         margin: 10px 0;
     }
 
-    .footer-content, .footer-content ul, .footer-content ul li {
-        text-align: center;
-        padding-left: 0;
+    .footer-content {
+        padding: 0 10px;
     }
 
-    .footer-content ul li a {
-        padding: 5px 0;
+    .footer-section {
+        margin-bottom: 15px;
     }
 
-    .footer-section h5, .footer-content p {
-        text-align: center;
+    .contact-section {
+        margin-bottom: 15px;
     }
 
-    .social-icons {
-        justify-content: center;
+    .d-flex.flex-column.flex-sm-row.justify-content-between.py-4.my-4.border-top p {
+        margin-bottom: 15px;
+    }
+
+    .d-flex.flex-column.flex-sm-row.justify-content-between.py-4.my-4.border-top ul {
+        margin-top: 15px;
     }
 }
